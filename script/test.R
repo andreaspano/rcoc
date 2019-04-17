@@ -1,16 +1,21 @@
 rm(list =  ls())
 require(rcoc)
-# require(httr)
-# require(dplyr)
+ require(httr)
+ require(dplyr)
+require(lubridate)
+require(readr)
 # require(ggplot2)
 # require(RColorBrewer)
 
 #' load_clan( tag = "#282UJRU28", token('~/dev/rcoc/tokens/token001'))
+clan <- load_clan(tag = "#282UJRU28", auth_key = token('~/dev/rcoc/tokens/token-34'))
 
-#ii <- load_clan(tag = "#282UJRU28", auth_key = token('~/dev/rcoc/tokens/token001'))
+tag <- "#282UJRU28"
+file <- paste(paste('ex', tag, format(now(), '%Y-%m-%d'), sep = '-'), 'rds', sep = '.')
+write_rds(clan , file)
 
-clan <- readRDS('./clan.Rds')
-class(clan) <-  'clan'
+#clan <- readRDS('./clan.Rds')
+#class(clan) <-  'clan'
 this_clan <-  info(clan)
 this_member <-  member(clan)
 

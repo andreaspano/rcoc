@@ -29,7 +29,7 @@ load_clan  <- function(tag, auth_key ){
   clan <- GET(url, add_headers(Authorization = paste("Bearer", auth_key, sep = " ")))
   clan <- content(clan, as = "parsed")
   class(clan) <-  'clan'
-  return(r)
+  return(clan)
 }
 ################################################
 #' @title info S3 generic method
