@@ -9,16 +9,22 @@ require(readr)
 
 #' load_clan( tag = "#282UJRU28", token('~/dev/rcoc/tokens/token001'))
 clan <- load_clan(tag = "#282UJRU28", auth_key = token('~/dev/rcoc/tokens/token-34'))
+export(clan , path =  './export')
 
-tag <- "#282UJRU28"
-file <- paste(paste('ex', tag, format(now(), '%Y-%m-%d'), sep = '-'), 'rds', sep = '.')
-write_rds(clan , file)
 
-#clan <- readRDS('./clan.Rds')
+
+# Clan di sergio
+#clan <- load_clan(tag = "#QYCUJPVL", auth_key = token('~/dev/rcoc/tokens/token-34'))
+
+# tag <- "#282UJRU28"
+
+
+
+
+  #clan <- readRDS('./clan.Rds')
 #class(clan) <-  'clan'
 this_clan <-  info(clan)
 this_member <-  member(clan)
-
 
 
 
