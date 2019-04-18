@@ -1,4 +1,4 @@
-#' @title replace # with %23
+#' replace # with %23
 #' @param x character
 #' @examples
 #' repash('#1234')
@@ -8,7 +8,7 @@ repash <- function(x) {
   str_replace(x, '#', '%23')
 }
 ################################################
-#' @title load a token file
+#' load a token file
 #' @examples
 #' token('./token1.txt')
 #' @export
@@ -16,7 +16,7 @@ token <- function(file){
   scan(file, what = 'c')
 }
 ################################################
-#' @title load clan data
+#' load clan data
 #' @param tag clan tag
 #' @param token a token
 #' @importFrom httr GET add_headers content
@@ -32,25 +32,40 @@ load_clan  <- function(tag, auth_key ){
   return(clan)
 }
 ################################################
-#' @title info S3 generic method
+#' info S3 generic method
 #' @param An R object. Currently there are methods for clan objects
 #' @export
 info <- function(x, ...) {
   UseMethod('info', x)
 }
 ###############################################
-#' @title info S3 generic method
+#' info S3 generic method
 #' @param An R object. Currently there are methods for clan objects
 #' @export
 member <- function(x, ...) {
   UseMethod('member', x)
 }
 ###############################################
-#' @title Returns info about the ith member of the clan
+#' tag S3 generic method
+#' @param An R object. Currently there are methods for clan objects
+#' @export
+tag <- function(x, ...) {
+  UseMethod('tag', x)
+}
+###############################################
+#' export S3 generic method
+#' @param An R object. Currently there are methods for clan objects
+#' @export
+export <- function(x, ...) {
+  UseMethod('export', x)
+}
+
+###############################################
+#' Returns info about the ith member of the clan
 #' @param i integer: ith member of the clan
 #' @param x: an object of class clan
 #' @examples
-#' .member ( 4, x = my_clan)
+#' member ( 4, x = my_clan)
 #' @importFrom tibble tibble
 #' @export
 .member <- function(i,  x, d = lubridate::now()){
@@ -71,8 +86,8 @@ member <- function(x, ...) {
   )
 }
 ###############################################
-#' @title Member method for objects of class clan.
-#' @description Returns a tibble of info about all members of the clan
+#' Member method for objects of class clan.
+#' Returns a tibble of info about all members of the clan
 #' @param x: an object of class clan
 #' @examples
 #' member (my_clan)
@@ -85,8 +100,8 @@ member.clan <- function(x){
 
 }
 ###############################################
-#' @title Info method for objects of class clan.
-#' @description Returns a tibble of info about the clan
+#' Info method for objects of class clan.
+#' Returns a tibble of info about the clan
 #' @param x: an object of class clan
 #' @examples
 #' info (my_clan)
@@ -94,18 +109,8 @@ member.clan <- function(x){
 #' @importFrom lubridate now
 #' @export
 
-# f <- function(x, date =  lubridate::now()){
-#   dplyr::tibble(date = date, tt = 0)
-# }
-#
-# f(1)
-
 info.clan <- function(x, d =  lubridate::now()){
 
-  # tibble(
-  #   info = c( "tag", "name","members", "type","location","clan level",
-  #             "clan points","clan versus points","required trophies","war frequency",
-  #             "war win streak","war wins","war ties","war losses","is war log public"),
      tibble (
       date = d,
       tag = x$tag,
@@ -125,7 +130,29 @@ info.clan <- function(x, d =  lubridate::now()){
       is_war_log_public = x$isWarLogPublic
     )
 }
-
+################################
+#' tag method for objects of class clan.
+#' Returns the tag a  clan
+#' @param x: an object of class clan
+#' @examples
+#' tag (my_clan)
+#' @export
+tag.clan <- function(x){
+  x$tag
+}
+##################################
+#' export method for objects of class clan.
+#' save a clan object in path. File name si ex-tag-today.rds
+#' @param x: an object of class clan
+#' @importFrom readr write_rds
+#' @examples
+#' export (my_clan, '~/')
+#' @export
+export.clan <- function(x, path) {
+  file <- paste(paste('ex', tag(clan), format(now(), '%Y-%m-%d'), sep = '-'), 'rds', sep = '.')
+  write_rds(x , file.path(path, file))
+  invisible(paste(file, 'exported'))
+}
 
 
 
