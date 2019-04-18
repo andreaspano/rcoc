@@ -2,7 +2,8 @@
 % Please edit documentation in R/basic.R
 \name{member.clan}
 \alias{member.clan}
-\title{Member method for objects of class clan.}
+\title{Member method for objects of class clan.
+Returns a tibble of info about all members of the clan}
 \usage{
 \method{member}{clan}(x)
 }
@@ -10,6 +11,7 @@
 \item{x:}{an object of class clan}
 }
 \description{
+Member method for objects of class clan.
 Returns a tibble of info about all members of the clan
 }
 \examples{

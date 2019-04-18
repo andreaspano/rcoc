@@ -2,7 +2,8 @@
 % Please edit documentation in R/basic.R
 \name{info.clan}
 \alias{info.clan}
-\title{Info method for objects of class clan.}
+\title{Info method for objects of class clan.
+Returns a tibble of info about the clan}
 \usage{
 \method{info}{clan}(x, d = lubridate::now())
 }
@@ -10,6 +11,7 @@
 \item{x:}{an object of class clan}
 }
 \description{
+Info method for objects of class clan.
 Returns a tibble of info about the clan
 }
 \examples{

@@ -15,5 +15,5 @@
 Returns info about the ith member of the clan
 }
 \examples{
-.member ( 4, x = my_clan)
+member ( 4, x = my_clan)
 }
