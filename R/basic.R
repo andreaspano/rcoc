@@ -273,17 +273,17 @@ get_attack <-  function(war) {
 #' @examples
 #' compare (war = this_war, max_lag = 3)
 #' @export
-compare <- function(war, max_lag = 3) {
+compare <- function(war, max_lag = 3, auth_key) {
 
 
   this_war <-  war
 
   opponent_member <- this_war$opponent$tag %>%
-    load_clan(auth_key = token('~/dev/rcoc/tokens/token-34')) %>%
+    load_clan(auth_key = auth_key) %>%
     member()
 
   clan_member <- this_war$clan$tag %>%
-    load_clan(auth_key = token('~/dev/rcoc/tokens/token-34')) %>%
+    load_clan(auth_key = auth_key) %>%
     member()
 
   clan_warrior <- tibble(
