@@ -1,7 +1,7 @@
 Package: rcoc
 Type: Package
 Title: R Clash of Clans interface
-Version: 0.1.0
+Version: 0.2.0
 Author: Andrea
 Maintainer: Andrea <andrea@quantide.com>
 Description: R Clash of Clans interface
